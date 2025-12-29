@@ -8,9 +8,11 @@ let cors = require("cors");
 
 app.use(express.json());
 app.use(cookieParser());
+const CLIENT_URL = process.env.CLIENT_URL || "https://deployement-sigma.vercel.app";
+
 app.use(
   cors({
-    origin: "https://deployement-sigma.vercel.app/",
+    origin: CLIENT_URL,
     credentials: true,
   })
 );

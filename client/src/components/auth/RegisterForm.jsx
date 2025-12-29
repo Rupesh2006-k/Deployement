@@ -54,6 +54,7 @@ const RegisterForm = () => {
             onChange={handleChange}
             className="w-full border border-zinc-700 p-2 rounded bg-zinc-800 text-zinc-100
                        focus:outline-none focus:ring-2 focus:ring-amber-400"
+            {...(field.name === 'password' ? { autoComplete: 'current-password' } : {})}
             required
           />
         </div>
