@@ -8,11 +8,10 @@ let cors = require("cors");
 
 app.use(express.json());
 app.use(cookieParser());
-const CLIENT_URL = process.env.CLIENT_URL || "https://deployement-sigma.vercel.app";
 
 app.use(
   cors({
-    origin: CLIENT_URL,
+    origin:"http://localhost:5173",
     credentials: true,
   })
 );
