@@ -31,8 +31,9 @@ const RegisterForm = () => {
       dispatch(isLogin(result.data.data));
       navigate("/main/");
     } catch (err) {
-      console.error("Registration failed", err);
-      alert("Registration failed");
+      const message = err?.response?.data?.message || err?.message || String(err);
+      console.error("Registration failed:", message, err);
+      alert(`Registration failed: ${message}`);
     }
   };
 
