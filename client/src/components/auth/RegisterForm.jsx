@@ -27,7 +27,7 @@ const RegisterForm = () => {
     }
 
     try {
-      const result = await axiosInstance.post("/user/auth/register", formData);
+      const result = await axiosInstance.post("user/auth/register", formData);
       dispatch(isLogin(result.data.data));
       navigate("/main/");
     } catch (err) {
