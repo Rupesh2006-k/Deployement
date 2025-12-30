@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../config/axiosInstance";
+import axios from "axios";
 
 const Error404 = () => {
   const navigate = useNavigate();
@@ -9,7 +9,7 @@ const Error404 = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await axiosInstance.get("/user/auth/current-user");
+        const res = await axios.get("https://deployement-end.onrender.com/api/user/auth/current-user");
 
         if (res.data?.user) {
           navigate("/main", { replace: true });

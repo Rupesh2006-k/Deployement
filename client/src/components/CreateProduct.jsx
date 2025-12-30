@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axiosInstance from "../config/axiosInstance";
+import axios from "axios";
 
 const CreateProduct = () => {
   const [product, setProduct] = useState({
@@ -23,7 +23,7 @@ const CreateProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const create = await axiosInstance.post("/product/create", product, {
+      const create = await axios.post("https://deployement-end.onrender.com/api/product/create", product, {
         withCredentials: true,
       });
       console.log("Product Created:", create);

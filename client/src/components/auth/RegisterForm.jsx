@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../../config/axiosInstance";
 import { useDispatch } from "react-redux";
 import { isLogin } from "../../features/AuthSlice";
+import axios from "axios";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
@@ -21,17 +21,27 @@ const RegisterForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.mobile || !formData.password) {
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.mobile ||
+      !formData.password
+    ) {
       alert("Please fill all fields");
       return;
     }
 
     try {
-      const result = await axiosInstance.post("user/auth/register", formData);
+      const result = await axios.post(
+        "https://deployement-end.onrender.com/api/user/auth/register",
+        formData,
+        { withCredentials: true }
+      );
       dispatch(isLogin(result.data.data));
       navigate("/main/");
     } catch (err) {
-      const message = err?.response?.data?.message || err?.message || String(err);
+      const message =
+        err?.response?.data?.message || err?.message || String(err);
       console.error("Registration failed:", message, err);
       alert(`Registration failed: ${message}`);
     }
@@ -54,7 +64,9 @@ const RegisterForm = () => {
             onChange={handleChange}
             className="w-full border border-zinc-700 p-2 rounded bg-zinc-800 text-zinc-100
                        focus:outline-none focus:ring-2 focus:ring-amber-400"
-            {...(field.name === 'password' ? { autoComplete: 'current-password' } : {})}
+            {...(field.name === "password"
+              ? { autoComplete: "current-password" }
+              : {})}
             required
           />
         </div>

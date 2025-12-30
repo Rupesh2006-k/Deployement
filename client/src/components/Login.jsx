@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import axiosInstance from "../config/axiosInstance";
 import { isLogin } from "../features/AuthSlice";
+import axios from "axios";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
 
   const [formData, setFormData] = useState({
     email: "",
@@ -25,9 +24,13 @@ const Login = () => {
       return;
     }
 
-    let result = await axiosInstance.post("/user/auth/login", formData, {
-      withCredentials: true,
-    });
+    let result = await axios.post(
+      "https://deployement-end.onrender.com/api/user/auth/login",
+      formData,
+      {
+        withCredentials: true,
+      }
+    );
     dispatch(isLogin(result.data.data));
 
     navigate("/main/");

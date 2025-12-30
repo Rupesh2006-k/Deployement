@@ -33,7 +33,11 @@ const registerUserController = async (req, res) => {
       expiresIn: "7d",
     });
 
-    res.cookie("token", token);
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: false,
+      sameSite: "lax",
+    });
 
     req.user = user;
     return res.status(201).json({
@@ -81,7 +85,11 @@ const loginUserController = async (req, res) => {
       expiresIn: "7d",
     });
 
-    res.cookie("token", token);
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: false,
+      sameSite: "lax",
+    });
 
     return res.status(200).json({
       success: true,
@@ -115,7 +123,7 @@ const logoutUserController = async (req, res) => {
 };
 
 const currentUserController = async (req, res) => {
-  console.log("check cl user ->", req.user);
+  console.log("check  user ->", req.user);
   return res.status(200).json({
     message: "Current user fetched",
     user: req.user,
@@ -141,7 +149,6 @@ const getAllUserController = async (req, res) => {
     });
   }
 };
-
 
 module.exports = {
   registerUserController,

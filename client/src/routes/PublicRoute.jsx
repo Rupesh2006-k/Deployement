@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import axiosInstance from "../config/axiosInstance";
 import { Navigate, Outlet } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import axios from "axios";
 
 const PublicRoute = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
@@ -9,13 +9,21 @@ const PublicRoute = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await axiosInstance.get("/user/auth/current-user");
+        const res = await axios.get(
+          "https://deployement-end.onrender.com/api/user/auth/current-user",
+          { withCredentials: true } // 👈 CORRECT
+        );
+
         setIsAuthenticated(!!res.data?.user);
         dispatch(res.data.user);
-      } catch {
+      } catch (err) {
+        console.log("====================================");
+        console.log(err);
+        console.log("====================================");
         setIsAuthenticated(false);
       }
     };
+
     checkAuth();
   }, []);
 

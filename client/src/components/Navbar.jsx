@@ -1,7 +1,7 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import axiosInstance from "../config/axiosInstance";
 import { useDispatch } from "react-redux";
 import { isLogout } from "../features/AuthSlice";
+import axios from "axios";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -9,7 +9,7 @@ const Navbar = () => {
 
   const logout = async () => {
     try {
-      await axiosInstance.get("/user/auth/logout");
+      await axios.get("https://deployement-end.onrender.com/api/user/auth/logout");
       dispatch(isLogout());
       navigate("/", { replace: true });
     } catch (err) {

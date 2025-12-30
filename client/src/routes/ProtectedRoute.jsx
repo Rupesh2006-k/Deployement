@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import axiosInstance from "../config/axiosInstance";
 import { isLogin } from "../features/AuthSlice";
 import { useDispatch } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
+import axios from "axios";
 
 const ProtectedRoute = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
@@ -11,7 +11,10 @@ const ProtectedRoute = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const { data } = await axiosInstance.get("/user/auth/current-user");
+        const { data } = await axios.get(
+          "https://deployement-end.onrender.com/api/user/auth/current-user",
+          { withCredentials: true }
+        );
         const userExists = !!data?.user;
         setIsAuthenticated(userExists);
         if (userExists) dispatch(isLogin(data.user));
