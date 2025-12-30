@@ -32,12 +32,12 @@ const registerUserController = async (req, res) => {
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, {
       expiresIn: "7d",
     });
+res.cookie("token", token, {
+  httpOnly: true,
+  secure: true,        // MUST for HTTPS
+  sameSite: "none",    // Cross-site cookie ke liye
+});
 
-    res.cookie("token", token, {
-      httpOnly: true,
-      secure: false,
-      sameSite: "lax",
-    });
 
     req.user = user;
     return res.status(201).json({
@@ -84,12 +84,12 @@ const loginUserController = async (req, res) => {
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, {
       expiresIn: "7d",
     });
-
     res.cookie("token", token, {
-      httpOnly: true,
-      secure: false,
-      sameSite: "lax",
-    });
+  httpOnly: true,
+  secure: true,        // MUST for HTTPS
+  sameSite: "none",    // Cross-site cookie ke liye
+});
+
 
     return res.status(200).json({
       success: true,
@@ -157,3 +157,10 @@ module.exports = {
   currentUserController,
   getAllUserController,
 };
+
+
+/* 
+
+https://deployement-end.onrender.com/
+https://deployement-end.onrender.com/
+*/ 
