@@ -4,7 +4,6 @@ let cookieParser = require("cookie-parser");
 const userRouter = require("./routes/user.routes");
 const productRouter = require("./routes/product.routes");
 let cors = require("cors");
-// middleware
 
 app.use(express.json());
 app.use(cookieParser());
