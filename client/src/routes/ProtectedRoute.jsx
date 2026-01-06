@@ -12,7 +12,7 @@ const ProtectedRoute = () => {
     const checkAuth = async () => {
       try {
         const { data } = await axios.get(
-          "http://localhost:3000/api/user/auth/current-user",
+          "https://deployement-1-rgh8.onrender.com/api/user/auth/current-user",
           { withCredentials: true }
         );
         const userExists = !!data?.user;

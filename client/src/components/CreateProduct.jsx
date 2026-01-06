@@ -23,7 +23,7 @@ const CreateProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const create = await axios.post("http://localhost:3000/api/product/create", product, {
+      const create = await axios.post("https://deployement-1-rgh8.onrender.com/api/product/create", product, {
         withCredentials: true,
       });
       console.log("Product Created:", create);
