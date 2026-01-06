@@ -10,7 +10,7 @@ const PublicRoute = () => {
     const checkAuth = async () => {
       try {
         const res = await axios.get(
-          "https://deployement-end.onrender.com/api/user/auth/current-user",
+          "http://localhost:3000/api/user/auth/current-user",
           { withCredentials: true } // 👈 CORRECT
         );
 

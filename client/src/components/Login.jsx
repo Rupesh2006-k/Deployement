@@ -25,7 +25,7 @@ const Login = () => {
     }
 
     let result = await axios.post(
-      "https://deployement-end.onrender.com/api/user/auth/login",
+      "http://localhost:3000/api/user/auth/login",
       formData,
       {
         withCredentials: true,

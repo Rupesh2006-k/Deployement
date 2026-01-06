@@ -33,7 +33,7 @@ const RegisterForm = () => {
 
     try {
       const result = await axios.post(
-        "https://deployement-end.onrender.com/api/user/auth/register",
+        "http://localhost:3000/api/user/auth/register",
         formData,
         { withCredentials: true }
       );

@@ -9,7 +9,7 @@ const Navbar = () => {
 
   const logout = async () => {
     try {
-      await axios.get("https://deployement-end.onrender.com/api/user/auth/logout");
+      await axios.get("http://localhost:3000/api/user/auth/logout");
       dispatch(isLogout());
       navigate("/", { replace: true });
     } catch (err) {

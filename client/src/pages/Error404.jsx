@@ -9,7 +9,7 @@ const Error404 = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await axios.get("https://deployement-end.onrender.com/api/user/auth/current-user");
+        const res = await axios.get("http://localhost:3000/api/user/auth/current-user");
 
         if (res.data?.user) {
           navigate("/main", { replace: true });
