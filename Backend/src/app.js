@@ -16,12 +16,11 @@ app.use(
   })
 );
 
-// test route
+// hello
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-// routes
 app.use("/api/user/auth", userRouter);
 app.use("/api/product", productRouter);
 
